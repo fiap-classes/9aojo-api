@@ -6,7 +6,7 @@ phases:
   build:
     commands:
       - echo "Building"
-      - mvn clean compile package
+      - mvn clean compile war:war
   post_build:
     commands:
       - echo "Movendo os arquivos que serão feitos upload"

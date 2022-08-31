@@ -5,8 +5,8 @@ phases:
       - echo "Pré build phase - Exemplo baixar dependências se fosse necessario"
   build:
     commands:
-      - echo "Building"
-      - mvn clean compile war:war
+      - echo "Testing and Building"
+      - mvn clean test compile war:war
   post_build:
     commands:
       - echo "Movendo os arquivos que serão feitos upload"

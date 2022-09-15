@@ -52,3 +52,24 @@ public class AssistanceServiceTest {
     }
 
 }
+
+/**
+ *
+ *
+ * Order (id:Long, operator_id:Long, assistances: List<Assistance>, start:OrderLocation, end:OrderLocation) -> Orders
+ * OrderLocation(id:Long, latitude: Double, longitude: Double, date: Date) -> OrdersLocations
+ * {
+ * "operator_id" : 0,
+ * "services" : [1 , 2, 3],
+ * "start" : {
+ * 	"latitude" : 0.0,
+ * 	"longitude" : 0.0,
+ * 	"datetime" : "2022-02-19 00:00:00"
+ * },
+ * "end" : {
+ * 	"latitude" : 0.0,
+ * 	"longitude" : 0.0,
+ * 	"datetime" : "2022-02-19 00:00:00"
+ * }
+ * }
+ */

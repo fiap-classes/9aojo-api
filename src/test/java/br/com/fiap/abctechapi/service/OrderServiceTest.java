@@ -1,6 +1,8 @@
 package br.com.fiap.abctechapi.service;
 
 
+import br.com.fiap.abctechapi.handler.expcetion.MaxAssistsException;
+import br.com.fiap.abctechapi.handler.expcetion.MinimumAssistRequiredException;
 import br.com.fiap.abctechapi.model.Assistance;
 import br.com.fiap.abctechapi.model.Order;
 import br.com.fiap.abctechapi.repository.AssistanceRepository;
@@ -46,7 +48,7 @@ public class OrderServiceTest {
         Order newOrder = new Order();
         newOrder.setOperatorId(1234L);
 
-        Assertions.assertThrows(Exception.class, () -> orderService.saveOrder(newOrder, List.of()));
+        Assertions.assertThrows(MinimumAssistRequiredException.class, () -> orderService.saveOrder(newOrder, List.of()));
         verify(orderRepository, times(0)).save(newOrder);
     }
 
@@ -55,7 +57,7 @@ public class OrderServiceTest {
         Order newOrder = new Order();
         newOrder.setOperatorId(1234L);
 
-        Assertions.assertThrows(Exception.class, () -> orderService.saveOrder(newOrder, generate_mocks_ids(20)));
+        Assertions.assertThrows(MaxAssistsException.class, () -> orderService.saveOrder(newOrder, generate_mocks_ids(20)));
         verify(orderRepository, times(0)).save(newOrder);
     }
 

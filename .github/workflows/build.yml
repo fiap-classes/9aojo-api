@@ -19,7 +19,3 @@ jobs:
           distribution: 'temurin'
       - name: Run test and building
         run: ./mvnw clean test compile war:war
-      - run: mkdir staging && cp target/*.war staging
-
-          
-  

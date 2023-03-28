@@ -19,3 +19,5 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+      - name: Run test and building
+        run: ./mvnw clean test compile war:war

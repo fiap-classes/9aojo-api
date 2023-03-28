@@ -42,4 +42,4 @@ jobs:
           environment_name: Abctechapi-env
           version_label: 12345
           region: us-east-1
-          deployment_package: ./staging/Package/*.war
+          deployment_package: ./staging/Package/abctechapi-0.0.2-SNAPSHOT.war

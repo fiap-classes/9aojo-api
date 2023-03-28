@@ -1,6 +1,5 @@
 name: Deploy workflow
 on:
-  push:
   pull_request:
     types:
       - closed

@@ -31,5 +31,4 @@ jobs:
           path: staging
       - name: Display structure of downloaded files
         run: ls -R
-        working-directory: staging
   

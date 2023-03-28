@@ -40,6 +40,6 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: abctechapi
           environment_name: Abctechapi-env
-          version_label: "${{ env.GITHUB_REF }}r${{ env.GITHUB_RUN_ID }}v${{ env.GITHUB_RUN_ATTEMPT }}"
+          version_label: ${{ github.ref }}r${{ github.run_id }}v${{ github.run_number }}
           region: us-east-1
           deployment_package: ./staging/Package/abctechapi-0.0.2-SNAPSHOT.war

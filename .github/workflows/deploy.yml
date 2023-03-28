@@ -1,0 +1,35 @@
+name: Build Test
+on:
+  push:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3 
+        name: Checkout
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Run test and building
+        run: ./mvnw clean test compile war:war
+      - run: mkdir staging && cp target/*.war staging
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Package
+          path: staging
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          path: staging
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: staging
+  

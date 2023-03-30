@@ -1,13 +1,13 @@
 name: Deploy workflow
 run-name: Deploying application
 on:
-    push:
     pull_request:
         types:
             - closed
 
 jobs:
     build:
+        if: ${{ github.event.pull_request.merged }}
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
@@ -39,3 +39,13 @@ jobs:
                 path: staging 
             - name: Display folder
               run: ls -R 
+            - name: Deploy to EB
+              uses: einaregilsson/beanstalk-deploy@v21
+              with:
+                aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                application_name: abctechapi
+                environment_name: Abctechapi-env
+                version_label: ${{ github.ref_name }}-R${{ github.run_id }}-V${{ github.run_number }}
+                region: us-east-1
+                deployment_package: ./staging/Package/abctechapi-0.0.2-SNAPSHOT.war

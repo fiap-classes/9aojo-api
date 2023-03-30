@@ -1,0 +1,23 @@
+name: Build and Test
+run-name: Build and test workflow
+on:
+    push:
+    pull_request:
+        types:
+            - opened
+            - edited
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+              name: Checkout project
+            - uses: actions/setup-java@v3
+              name: Setup Java
+              with: 
+                distribution: 'temurin'
+                java-version: 17
+            - name: Run test and building
+              run: ./mvnw clean test compile war:war
+                      
